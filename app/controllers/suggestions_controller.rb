@@ -1,9 +1,8 @@
 class SuggestionsController < ApplicationController
+  include Snacks
 
   def index
-    p '*' * 10
-    p session[:current_user_id]
-    p '*' * 10
+    @suggestions = snacks_json
   end
 
 end

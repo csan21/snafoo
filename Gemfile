@@ -36,10 +36,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'rspec-rails'
 gem 'rails-controller-testing'
+gem 'rest-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem "dotenv-rails"
+  gem "dotenv-rails"
   gem 'byebug', platform: :mri
 end
 
