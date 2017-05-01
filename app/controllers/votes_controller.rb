@@ -2,7 +2,8 @@ class VotesController < ApplicationController
   include Snacks
 
   def index
-    @suggestions = snacks_json
+    purchased_list
+    @suggestions = Suggestion.all
   end
 
 end
