@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :suggestions, only: [:index]
+  resources :suggestions, only: [:index, :new]
+  resources :votes, only: [:index, :create]
 
-  root to: 'suggestions#index'
+  root to: 'votes#index'
 
 end
