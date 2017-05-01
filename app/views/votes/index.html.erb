@@ -1,4 +1,8 @@
 <h2>Voting Page</h2>
+
 <% @suggestions.each do |snack| %>
-  <%= snack["name"] %><br>
+  <strong><%= snack["name"] %></strong><br>
+  Last Purchased on <%= snack["lastPurchaseDate"] %><br><br>
 <% end %>
+
+<%= link_to "Suggestions Page", suggestions_path %>
