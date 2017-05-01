@@ -1,3 +1,3 @@
 class Vote < ApplicationRecord
-  belongs_to :suggestions
+  belongs_to :suggestion
 end
