@@ -6,4 +6,7 @@ class VotesController < ApplicationController
     @suggestions = Suggestion.all
   end
 
+  def create
+  end
+
 end

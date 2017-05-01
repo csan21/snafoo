@@ -18,4 +18,5 @@ module Snacks
   # def suggested_list
   #   @suggested = snack_list.select { |snack| snack["optional"] == true }
   # end
+
 end
