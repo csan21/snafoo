@@ -4,4 +4,11 @@ class Suggestion < ApplicationRecord
   validates_presence_of :name, :purchase_location
   # suggestions cant be the same name regardless of letter casing
   validates :name, uniqueness: { case_sensitive: false }
+
+  def purchased_list
+    @purchased = snack_list.select { |snack| snack["optional"] == false }
+  end
+
+  def drop_down_menu
+  end
 end
