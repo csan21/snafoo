@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe SuggestionsController, type: :controller do
 
-  describe 'homepage action' do
+  describe 'suggestions page' do
 
-    it 'should load suggestions index as homepage' do
+    it 'should load suggestions index page' do
       get :index
       expect(response).to render_template(:index)
     end
