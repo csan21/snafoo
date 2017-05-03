@@ -4,15 +4,14 @@
 
 <% @purchased.each do |snack| %>
   <strong><%= snack["name"] %></strong><br>
-  Last Purchased on <%= snack["lastPurchaseDate"] %><br><br>
 <% end %>
 
 <h3>Snacks newly suggested</h3>
 
-<% @suggestions.each do |suggestion| %>
+<% @suggested.each do |suggestion| %>
   <strong><%= suggestion.name %></strong><br>
   Found at <%= suggestion.purchase_location %><br>
-  Vote count: <%= suggestion.votes.count %><br><br>
+  Vote count:<br><br>
 <% end %>
 
 <%= link_to "Suggestions Page", suggestions_path %>
