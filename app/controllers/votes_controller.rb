@@ -1,27 +1,23 @@
 class VotesController < ApplicationController
+  include SessionsHelper
   include Snacks
 
   def index
-    # first connection
-    # if !session[:user_info]
-    #   session[:user_info] = {
-    #     vote_counts: 3,
-    #     voted_items:[],
-    #     suggested_item: ""
-    #   }
-    # else
-    #   if new_month?
-    #     session[:user_info] = {
-    #       vote_counts: 3,
-    #       voted_items:[],
-    #       suggested_item: ""
-    #     }
-    #   end
-    # end
-    #
-    # p session
-    # sync_database
+    set_session
     @purchased = Suggestion.purchased_list
     @suggested = Suggestion.suggested_list
   end
+
+  def create
+    @snack = Suggestion.find(params[:id])
+
+    if duplicate_vote_check?(@snack) && session[:votes] > 0
+      @snack.vote_count += 1
+      session[:votes] -= 1
+      session[:voted_for].push(@snack.name)
+    end
+
+    redirect_to root
+  end
+
 end
