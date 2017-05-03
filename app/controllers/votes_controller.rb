@@ -1,6 +1,6 @@
 class VotesController < ApplicationController
   include SessionsHelper
-  include Snacks
+  include SnacksApi
 
   def index
     set_session

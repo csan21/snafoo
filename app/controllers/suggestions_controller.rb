@@ -1,6 +1,6 @@
 class SuggestionsController < ApplicationController
   include SessionsHelper
-  include Snacks
+  include SnacksApi
 
   def index
   end

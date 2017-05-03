@@ -2,7 +2,7 @@ require 'rest-client'
 require 'json'
 
 # API calls to the nerdery snack list, and data parsing
-module Snacks
+module SnacksApi
 
   # parses snack list from api
   def parse_list
