@@ -1,0 +1,9 @@
+<% if flash[:suggestion_error] %>
+  <p class="suggestion-error"><%= flash[:suggestion_error] %></p><br>
+<% end %>
+
+<% if @errors %>
+  <% @errors.each do |error| %>
+  <p class="suggestion-error"><%= error %></p><br>
+  <% end %>
+<% end %>

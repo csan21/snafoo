@@ -5,7 +5,8 @@ module SessionsHelper
   def set_session
     session[:votes] ||= 3
     session[:voted_for] ||= []
-    session[:suggested_item] ||= ""
+    session[:suggestion_count] ||= 1
+    session[:suggested_item] ||= []
   end
 
   # checks to see if you already voted on the snack item
@@ -14,8 +15,7 @@ module SessionsHelper
   end
 
   # checks to see if you already made a suggestion
-  def suggestion_check?(snack_item)
-    session[:suggested_item].exists?
+  def suggestion_check?
+    session[:suggested_item].empty?
   end
-
 end

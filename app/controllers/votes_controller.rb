@@ -12,6 +12,7 @@ class VotesController < ApplicationController
     @snack = Suggestion.find(params[:id])
     @vote = Vote.new(suggestion_id: @snack.id)
 
+    # sessions_helper method
     if !duplicate_vote_check?(@snack.name) && session[:votes] > 0
       @vote.save
       session[:votes] -= 1

@@ -17,4 +17,8 @@ class Suggestion < ApplicationRecord
   def self.voting_list
     Suggestion.all.select { |snack| snack[:being_voted] == true }
   end
+
+  def self.dropdown_list
+    Suggestion.all.select { |snack| snack[:being_voted] == false && snack[:optional] == true }
+  end
 end

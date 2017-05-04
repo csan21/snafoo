@@ -34,3 +34,8 @@ body {
   font-size: 20pt;
   color: red;
 }
+
+.suggestion-error {
+  font-size: 20pt;
+  color: red;
+}
