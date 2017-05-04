@@ -14,7 +14,9 @@ module SnacksApi
     snacks = api_parse_list
 
     snacks.each do |snack|
-      Suggestion.create(name: snack['name'], purchase_location: snack['purchaseLocations'])
+      Suggestion.create(name: snack['name'],
+                        location: snack['purchaseLocations'],
+                        optional: snack['optional'])
     end
   end
 

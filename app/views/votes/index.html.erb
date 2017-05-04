@@ -10,9 +10,10 @@
 
 <% @suggested.each do |suggestion| %>
   <%= suggestion.name %><br>
-  Found at <%= suggestion.purchase_location %><br>
-  Vote count: <%= suggestion.vote_count %><br><br>
-<% end %>
+  Found at <%= suggestion.location %><br>
+  Vote count: <%= suggestion.vote_count %><br>
+  <%= link_to 'vote!', suggestion_path(suggestion.id), method: :put %><br><br>
+<% end %><br>
 
 <%= session[:votes] %> votes left this month!<br>
 

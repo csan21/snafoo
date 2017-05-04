@@ -1,5 +1,5 @@
 class Suggestion < ApplicationRecord
-  validates_presence_of :name, :purchase_location
+  validates_presence_of :name, :location
   validates :name, uniqueness: { case_sensitive: false }
 
   # list of snacks that are always purchased

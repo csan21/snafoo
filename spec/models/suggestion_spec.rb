@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Suggestion, type: :model do
   # for validations testing purposes
-  let(:suggestion_no_name) { Suggestion.new(purchase_location: "Walgreens") }
+  let(:suggestion_no_name) { Suggestion.new(location: "Walgreens") }
   let(:suggestion_no_location) { Suggestion.new(name: "Bananas") }
 
   describe 'validations' do
@@ -14,7 +14,7 @@ RSpec.describe Suggestion, type: :model do
 
       it 'when the location is empty' do
         suggestion_no_location.save
-        expect(suggestion_no_location.errors[:purchase_location]).to include("can't be blank")
+        expect(suggestion_no_location.errors[:location]).to include("can't be blank")
       end
     end
   end
