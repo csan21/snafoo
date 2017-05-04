@@ -29,3 +29,8 @@ body {
 .container h1 {
  font-size: 40pt;
 }
+
+.vote-error {
+  font-size: 20pt;
+  color: red;
+}

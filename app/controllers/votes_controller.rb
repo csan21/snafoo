@@ -3,23 +3,26 @@ class VotesController < ApplicationController
   include SnacksApi
 
   def index
-    set_session
+    set_session # does not overwrite itself unless sessions are cleared
     @purchased = Suggestion.purchased_list
     @suggested = Suggestion.voting_list
   end
 
-  # update vote count, no longer creating a vote object
   def create
     @snack = Suggestion.find(params[:id])
+    @vote = Vote.new(suggestion_id: @snack.id)
 
-    if duplicate_vote_check?(@snack) && session[:votes] > 0
-      @snack.update_attribute(:vote_count, 1)
+    if !duplicate_vote_check?(@snack.name) && session[:votes] > 0
+      @vote.save
       session[:votes] -= 1
       session[:voted_for].push(@snack.name)
       redirect_to root_path
+    elsif session[:votes] == 0
+      flash[:vote_error] = "You're out of votes for the month"
+      redirect_to :back
     else
-      cookies[:vote_error] = "Voting Error"
-      render :index
+      flash[:vote_error] = "Can't vote on this snack again"
+      redirect_to :back #deprecation warning for 5.1
     end
   end
 end
