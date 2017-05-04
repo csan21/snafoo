@@ -7,5 +7,4 @@ class VotesController < ApplicationController
     @purchased = Suggestion.purchased_list
     @suggested = Suggestion.voting_list
   end
-
 end

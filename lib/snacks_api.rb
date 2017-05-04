@@ -5,13 +5,13 @@ require 'json'
 module SnacksApi
 
   # parses snack list from api
-  def parse_list
+  def api_parse_list
     JSON.parse(RestClient.get ENV['NERDERY_API'])
   end
 
   # syncs api list to database
-  def sync_database
-    snacks = parse_list
+  def api_sync_database
+    snacks = api_parse_list
 
     snacks.each do |snack|
       Suggestion.create(name: snack['name'], purchase_location: snack['purchaseLocations'])
@@ -19,8 +19,8 @@ module SnacksApi
   end
 
   # boolean check to see if snack is already in the api list
-  def snack_checker?(snack_name)
-    return true if parse_list.detect { |snack| snack["name"].downcase == snack_name.downcase }
+  def api_snack_checker?(snack_name)
+    return true if api_parse_list.detect { |snack| snack["name"].downcase == snack_name.downcase }
   end
 
 end

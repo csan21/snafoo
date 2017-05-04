@@ -16,9 +16,11 @@ class SuggestionsController < ApplicationController
       @snack.vote_count += 1
       session[:votes] -= 1
       session[:voted_for].push(@snack.name)
+      redirect_to root_path
+    else
+      cookies[:vote_error] = "Voting Error"
+      render 'votes/index'
     end
-
-    redirect_to root_path
   end
 
 end

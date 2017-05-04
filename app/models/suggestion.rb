@@ -1,5 +1,4 @@
 class Suggestion < ApplicationRecord
-
   validates_presence_of :name, :purchase_location
   validates :name, uniqueness: { case_sensitive: false }
 
@@ -17,5 +16,4 @@ class Suggestion < ApplicationRecord
   def self.voting_list
     Suggestion.all.select { |snack| snack[:being_voted] == true }
   end
-
 end
