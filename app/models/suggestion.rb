@@ -8,9 +8,14 @@ class Suggestion < ApplicationRecord
     Suggestion.all.select { |snack| snack[:optional] == false }
   end
 
-  # list of snacks that are newly suggested
-  def self.suggested_list
+  # list of snacks that are optional
+  def self.optional_list
     Suggestion.all.select { |snack| snack[:optional] == true }
+  end
+
+  # list of snacks that are being voted on
+  def self.voting_list
+    Suggestion.all.select { |snack| snack[:being_voted] == true }
   end
 
 end

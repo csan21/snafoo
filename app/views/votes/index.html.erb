@@ -9,9 +9,11 @@
 <h3>Snacks newly suggested</h3>
 
 <% @suggested.each do |suggestion| %>
-  <strong><%= suggestion.name %></strong><br>
+  <%= suggestion.name %><br>
   Found at <%= suggestion.purchase_location %><br>
   Vote count: <%= suggestion.vote_count %><br><br>
 <% end %>
+
+<%= session[:votes] %> votes left this month!<br>
 
 <%= link_to "Suggestions Page", suggestions_path %>
