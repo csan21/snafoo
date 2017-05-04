@@ -1,4 +1,5 @@
 class Suggestion < ApplicationRecord
+  has_many :votes
   validates_presence_of :name, :location
   validates :name, uniqueness: { case_sensitive: false }
 
