@@ -3,15 +3,25 @@
 <h3>Snacks always purchased</h3>
 
 <% @purchased.each do |snack| %>
-  <strong><%= snack["name"] %></strong><br>
+  <%= snack.name %><br>
 <% end %>
 
-<h3>Snacks newly suggested</h3>
+<h3>Vote on these snacks</h3>
+
+<% if flash[:vote_error] %>
+  <p class="vote-error"><%= flash[:vote_error] %></p>
+<% end %>
+
+<p class="votes-left">
+  <%= session[:votes] %> votes left this month!
+</p>
 
 <% @suggested.each do |suggestion| %>
-  <strong><%= suggestion.name %></strong><br>
-  Found at <%= suggestion.purchase_location %><br>
-  Vote count:<br><br>
-<% end %>
+  <%= suggestion.name %><br>
+  Found at <%= suggestion.location %><br>
+  Vote count: <%= suggestion.votes.count %><br>
+  <%= button_to 'vote!', votes_path(id: suggestion.id, method: :post) %><br>
+<% end %><br>
 
-<%= link_to "Suggestions Page", suggestions_path %>
+
+<%= link_to "Suggestions Page", new_suggestion_path %>

@@ -1,23 +1,39 @@
 class SuggestionsController < ApplicationController
-  include Snacks
+  include SessionsHelper
+  include SnacksApi
 
-  def index
+  def new
+    @dropdown_menu = Suggestion.collection_list
+    @suggestion = Suggestion.new
+  end
+
+  def create
+    @suggestion = Suggestion.new(suggestion_params)
+
+    # sessions_helper method
+    if suggestion_check? && @suggestion.valid?
+      @suggestion.save
+      session[:suggestion_count] -= 1
+      session[:suggested_item].push(@suggestion)
+      redirect_to root_path
+    elsif !suggestion_check?
+      flash[:suggestion_error] = "You already made a suggestion"
+      redirect_to :back
+    else
+      @errors = @suggestion.errors.full_messages
+      redirect_to :back
+    end
+  end
+
+  def edit
   end
 
   def update
-    # @item = Suggestion.find(params[:id])
-    # @item.vote_count += = 1
-    #
-    # if session[:user_info][:vote_count] > 0
-    #   session[:user_info][:vote_count] -= 1
-    #   session[:user_info][:voted_items].push(@item.name)
-    # end
-    #
-    # redirect_to root
   end
 
+  private
 
-  def create
-  end
-
+    def suggestion_params
+      params.require(:suggestion).permit(:id, :name, :location, :being_voted)
+    end
 end

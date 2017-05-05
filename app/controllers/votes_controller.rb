@@ -1,27 +1,31 @@
 class VotesController < ApplicationController
-  include Snacks
+  include SessionsHelper
+  include SnacksApi
 
+  # <-- initial population after db:create/migrate for the database THEN rails db:seed after the sync -->
   def index
-    # first connection
-    # if !session[:user_info]
-    #   session[:user_info] = {
-    #     vote_counts: 3,
-    #     voted_items:[],
-    #     suggested_item: ""
-    #   }
-    # else
-    #   if new_month?
-    #     session[:user_info] = {
-    #       vote_counts: 3,
-    #       voted_items:[],
-    #       suggested_item: ""
-    #     }
-    #   end
-    # end
-    #
-    # p session
-    # sync_database
+    # api_sync_database
+    set_session # does not overwrite itself unless sessions are cleared
     @purchased = Suggestion.purchased_list
-    @suggested = Suggestion.suggested_list
+    @suggested = Suggestion.voting_list
+  end
+
+  def create
+    @snack = Suggestion.find(params[:id])
+    @vote = Vote.new(suggestion_id: @snack.id)
+
+    # sessions_helper method
+    if !duplicate_vote_check?(@snack.name) && session[:votes] > 0
+      @vote.save
+      session[:votes] -= 1
+      session[:voted_for].push(@snack.name)
+      redirect_to root_path
+    elsif session[:votes] == 0
+      flash[:vote_error] = "You're out of votes for the month"
+      redirect_to :back
+    else
+      flash[:vote_error] = "Can't vote on this snack again"
+      redirect_to :back #deprecation warning for 5.1
+    end
   end
 end

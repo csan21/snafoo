@@ -29,3 +29,21 @@ body {
 .container h1 {
  font-size: 40pt;
 }
+
+.vote-error {
+  font-size: 20pt;
+  color: red;
+}
+
+.suggestion-error {
+  font-size: 20pt;
+  color: red;
+}
+
+.votes-left {
+  color: red;
+}
+
+.suggestions-left {
+  color: red;
+}

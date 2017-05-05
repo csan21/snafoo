@@ -1,6 +1,6 @@
 class Suggestion < ApplicationRecord
-
-  validates_presence_of :name, :purchase_location
+  has_many :votes
+  validates_presence_of :name, :location
   validates :name, uniqueness: { case_sensitive: false }
 
   # list of snacks that are always purchased
@@ -8,9 +8,23 @@ class Suggestion < ApplicationRecord
     Suggestion.all.select { |snack| snack[:optional] == false }
   end
 
-  # list of snacks that are newly suggested
-  def self.suggested_list
+  # list of snacks that are optional
+  def self.optional_list
     Suggestion.all.select { |snack| snack[:optional] == true }
   end
 
+  # list of snacks that are being voted on
+  def self.voting_list
+    Suggestion.all.select { |snack| snack[:being_voted] == true }
+  end
+
+  # list of snacks that are optional but not being voted on
+  def self.dropdown_list
+    Suggestion.all.select { |snack| snack[:being_voted] == false && snack[:optional] == true }
+  end
+
+  # collection list for form_for / select in the view
+  def self.collection_list
+    dropdown_list.collect { |p| [ p.name, p.id ] }
+  end
 end
