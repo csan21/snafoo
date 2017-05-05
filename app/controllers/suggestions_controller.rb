@@ -25,13 +25,10 @@ class SuggestionsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
-    # @suggestion = Suggestion.find(params[:id])
-    #
-    # if suggestion_check?
-    #   @suggestion.update_attributes(params[:being_voted])
-    #   redirect_to root_path
-    # end
   end
 
   private

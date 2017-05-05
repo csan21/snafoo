@@ -18,10 +18,12 @@ class Suggestion < ApplicationRecord
     Suggestion.all.select { |snack| snack[:being_voted] == true }
   end
 
+  # list of snacks that are optional but not being voted on
   def self.dropdown_list
     Suggestion.all.select { |snack| snack[:being_voted] == false && snack[:optional] == true }
   end
 
+  # collection list for form_for / select in the view
   def self.collection_list
     dropdown_list.collect { |p| [ p.name, p.id ] }
   end
