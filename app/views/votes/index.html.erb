@@ -9,16 +9,18 @@
 <h3>Vote on these snacks</h3>
 
 <% if flash[:vote_error] %>
-  <p class="vote-error"><%= flash[:vote_error] %></p><br>
+  <p class="vote-error"><%= flash[:vote_error] %></p>
 <% end %>
 
-<%= session[:votes] %> votes left this month!<br><br>
+<p class="votes-left">
+  <%= session[:votes] %> votes left this month!
+</p>
 
 <% @suggested.each do |suggestion| %>
   <%= suggestion.name %><br>
   Found at <%= suggestion.location %><br>
   Vote count: <%= suggestion.votes.count %><br>
-  <%= button_to 'vote!', votes_path(id: suggestion.id, method: :post) %><br><br>
+  <%= button_to 'vote!', votes_path(id: suggestion.id, method: :post) %><br>
 <% end %><br>
 
 

@@ -39,3 +39,11 @@ body {
   font-size: 20pt;
   color: red;
 }
+
+.votes-left {
+  color: red;
+}
+
+.suggestions-left {
+  color: red;
+}
