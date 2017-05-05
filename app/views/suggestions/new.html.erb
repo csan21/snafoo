@@ -7,7 +7,7 @@
 
 <h3>Choose one from list to add to voting page</h3>
 
-<%= form_for @suggestion, { controller: "suggestions", action: "update" } do |r| %>
+<%= form_for @suggestion, url: new_suggestion_url(@suggestion), method: :patch do |r| %>
   <%= r.select :id, @dropdown_menu, include_blank: true %><br>
   <%= r.hidden_field :being_voted, { value: true } %>
   <%= r.submit 'Choose Suggestion' %>

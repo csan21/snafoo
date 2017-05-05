@@ -25,10 +25,19 @@ class SuggestionsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
+  # updates suggestion to show up on voting list
   def update
+    @suggestion = Suggestion.find(params[:suggestion][:id])
+
+    if suggestion_check?
+      @suggestion.update_attribute(:being_voted, true)
+      session[:suggestion_count] -= 1
+      session[:suggested_item].push(@suggestion)
+      redirect_to root_path
+    else
+      flash[:suggestion_error] = "You already made a suggestion"
+      redirect_to :back
+    end
   end
 
   private
