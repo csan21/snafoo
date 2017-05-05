@@ -3,9 +3,12 @@
 <p>Suggestions left this month: <%= session[:suggestion_count] %></p>
 
 <h3>Choose one from list to add to voting page</h3>
-  <% @dropdown_menu.each do |snack| %>
-    <%= snack.name %><br>
-    <% end %>
+
+<%= form_for @suggestion, { controller: "suggestions", action: "update" } do |r| %>
+  <%= r.select :id, @dropdown_menu, include_blank: true %><br>
+  <%= r.hidden_field :being_voted, { value: true } %>
+  <%= r.submit 'Choose Suggestion' %>
+<% end %>
 
 <h3>Or make a snack suggestion</h3>
 
@@ -14,6 +17,6 @@
 <%= form_for(@suggestion) do |f| %>
   <%= f.text_field :name, placeholder: "Snack Name" %><br>
   <%= f.text_field :location, placeholder: "Where to Buy" %><br>
-  <%= f.hidden_field :being_voted, { value: true } %><br>
+  <%= f.hidden_field :being_voted, { value: true } %>
   <%= f.submit %>
 <% end %>

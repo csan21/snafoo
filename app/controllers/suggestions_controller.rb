@@ -3,7 +3,7 @@ class SuggestionsController < ApplicationController
   include SnacksApi
 
   def new
-    @dropdown_menu = Suggestion.dropdown_list
+    @dropdown_menu = Suggestion.collection_list
     @suggestion = Suggestion.new
   end
 
@@ -25,9 +25,18 @@ class SuggestionsController < ApplicationController
     end
   end
 
+  def update
+    # @suggestion = Suggestion.find(params[:id])
+    #
+    # if suggestion_check?
+    #   @suggestion.update_attributes(params[:being_voted])
+    #   redirect_to root_path
+    # end
+  end
+
   private
 
     def suggestion_params
-      params.require(:suggestion).permit(:name, :location, :being_voted)
+      params.require(:suggestion).permit(:id, :name, :location, :being_voted)
     end
 end

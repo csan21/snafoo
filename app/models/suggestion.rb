@@ -21,4 +21,8 @@ class Suggestion < ApplicationRecord
   def self.dropdown_list
     Suggestion.all.select { |snack| snack[:being_voted] == false && snack[:optional] == true }
   end
+
+  def self.collection_list
+    dropdown_list.collect { |p| [ p.name, p.id ] }
+  end
 end
