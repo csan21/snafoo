@@ -2,7 +2,9 @@ class VotesController < ApplicationController
   include SessionsHelper
   include SnacksApi
 
+  # <-- initial population after db:create/migrate for the database THEN rails db:seed after the sync -->
   def index
+    # api_sync_database
     set_session # does not overwrite itself unless sessions are cleared
     @purchased = Suggestion.purchased_list
     @suggested = Suggestion.voting_list
