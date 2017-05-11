@@ -1,24 +1,8 @@
-# README
+# SnaFoo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Nerdery Assessment Test
 
-Things you may want to cover:
+Built to specifications using 2 models, cookie/session stores in place of Users,
+and implementation of the provided Nerdery API.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Specifications and Api Key not listed for privacy
